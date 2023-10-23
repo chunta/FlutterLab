@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -58,6 +59,47 @@ class TodosScreen extends StatelessWidget {
   }
 }
 
+class FeaturesListApp extends StatelessWidget {
+  const FeaturesListApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Color.fromARGB(73, 121, 83, 255),
+      child: ListView(
+        children: <Widget>[
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).push(CupertinoPageRoute(
+                    fullscreenDialog: true,
+                    builder: (context) => TodosScreen(
+                        todos: List.generate(
+                            20, (i) => Todo('Todo $i', 'A description')))));
+              },
+              child: Text("Navigation/Route"))
+        ],
+      ),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: FeaturesListApp());
+  }
+}
+
+/*
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -75,6 +117,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+*/
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
